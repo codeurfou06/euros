@@ -1,6 +1,6 @@
 const Const = 
 { 
-    API_URL : 'http://192.168.1.13:8088/api/',
+    API_URL : 'http://eurosapi-prod.eu-west-3.elasticbeanstalk.com/api/',
 };
 
 export default Const;
