@@ -1,31 +1,28 @@
 {
-  "name": "euros",
+  "name": "boutique",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://192.168.1.13:8088",
   "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "bootstrap": "file:node_modules\\bootstrap",
+    "ngx-bootstrap": "^3.0.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "reactstrap": "^6.0.1",
+    "redux-immutable-state-invariant": "^2.1.0",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.2"
   }
 }
