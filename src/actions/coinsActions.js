@@ -1,10 +1,10 @@
 import {fetchCoinsPending, fetchCoinsSuccess, fetchCoinsError} from './actionTypes';
-import Const from '../Const';
+import API_URL from './../Const';
 
 function fetchCoins() {
     return dispatch => {
         dispatch(fetchCoinsPending());
-        fetch(Const.API_URL + "coin")
+        fetch(API_URL() + "coin")
         .then(res => res.json())
         .then(res => {
             if(res.error) {
