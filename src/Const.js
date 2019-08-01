@@ -5,7 +5,7 @@ function API_URL(){
         }
     else 
         {
-            return 'http://localhost:65020/api/'
+            return 'http://192.168.1.13:8088/api/'//http://localhost:65020/api/'
         }
 }
 

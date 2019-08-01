@@ -16,7 +16,7 @@ class Commemorative extends Component{
 
   render(){
     if(this.props.IsCommemorative){
-      return <div>Pièce commémorative</div>
+      return <div>Commémorative</div>
     }
       return null;
   }
@@ -36,16 +36,16 @@ class CoinItem extends Component {
   }
 
   render() {
-    if (this.state.redirect) {
-       return <Redirect push to={'/coin/' + this.state.id}/>;
-    }
+    // if (this.state.redirect) {
+    //    return <Redirect push to={'/coin/' + this.state.id}/>;
+    // }
 
-    const {Id, Year, IsCommemorative, Country, Diffusion} = this.props.datas;
+    const {Id, Year, IsCommemorative, Country, Diffusion, Url, Name} = this.props.datas;
       return (
           <div className="coins-item" key={Id} /*onClick={ (e) => this.handleOnClick(Id)}*/>
-              <div className="picture-coin-item" style={{ backgroundImage: 'url("pictures/' + Id + '.jpg")' }}></div>
+            <div className="picture-coin-item" style={{ backgroundImage: 'url("' + Url + '")' }}></div>
               {Year} - {Country.Name} <br/>
-              Diffusion : {Diffusion}
+              <b className="name">{Name}</b>
               <Commemorative IsCommemorative={IsCommemorative}/>
                 
           </div>
@@ -79,11 +79,14 @@ class Coins extends Component {
       // if(true) return <Loader/>
       if(pending || coins == null) return <Loader/>
       return (          
+        <div>
+          <h4>Nombre : {coins.length}</h4>
           <div className='product-list-wrapper'>              
               {coins.map(function(item, key){
                 return <CoinItem datas={item} key={key}/>
               })} 
-          </div>)
+          </div>
+        </div>)
   }
 }
 

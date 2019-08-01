@@ -2,7 +2,7 @@
   "name": "boutique",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://192.168.1.13:8088",
+  "proxy": "http://eurosapi-prod.eu-west-3.elasticbeanstalk.com/api/coin",
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
