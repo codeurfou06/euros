@@ -1,0 +1,29 @@
+.coins-item{
+    color: black;
+    width : 14em;
+    height : 18em;
+    border : 1px solid black;
+    position: relative;
+    float:left;
+    padding : 10px;
+    margin : 5px;    
+}
+
+.picture-coin-item{
+    height : 11em;
+    width: 11em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-size: contain
+}
+
+.name{
+    line-height: 1.1em;
+    display: inline-block;
+    max-height: 3em;
+    overflow-y: hidden;
+}

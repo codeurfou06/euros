@@ -10,8 +10,8 @@ function fetchCoins() {
             if(res.error) {
                 throw(res.error);
             }
-            dispatch(fetchCoinsSuccess(res.coins));
-            return res.coins;
+            dispatch(fetchCoinsSuccess(res));
+            return res;
         })
         .catch(error => {
             dispatch(fetchCoinsError(error));

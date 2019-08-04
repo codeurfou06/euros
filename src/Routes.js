@@ -1,23 +1,23 @@
 import {
     BrowserRouter as Router,
-    Link,
+    //Link,
     Route
 } from 'react-router-dom';
-import React, { Component } from 'react';
+import React from 'react';
 import Coins from './components/Coins';
 import './Routes.css';
 
-class BtnLink extends Component {
-    render() {
-        return (
-            <li>
-                <Link to={this.props.path}>
-                    <button className="btn btn-dark"> {this.props.name}</button>
-                </Link>
-            </li>
-        )
-    }
-}
+// class BtnLink extends Component {
+//     render() {
+//         return (
+//             <li>
+//                 <Link to={this.props.path}>
+//                     <button className="btn btn-dark"> {this.props.name}</button>
+//                 </Link>
+//             </li>
+//         )
+//     }
+// }
 
 export const Routes = () =>
     (

@@ -2,87 +2,48 @@ import React, { Component } from 'react';
 import './Coins.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { Redirect } from 'react-router';
 import Loader from './Loader';
+import CoinItem from './CoinItem';
 
 
 import fetchCoinsAction from '../actions/coinsActions';
-import {getCoinsError, getCoins, getCoinsPending} from '../reducers/coinsReducer';
-
-class Commemorative extends Component{
-  constructor(props){
-    super(props)
-  }
-
-  render(){
-    if(this.props.IsCommemorative){
-      return <div>Commémorative</div>
-    }
-      return null;
-  }
-}
-
-class CoinItem extends Component {
-
-  constructor(props){
-    super(props)
-    this.state = {redirect : false,
-                  id : null};
-  }
-
-  handleOnClick = (id) => {
-    this.setState({redirect: true,
-                   id : id});
-  }
-
-  render() {
-    // if (this.state.redirect) {
-    //    return <Redirect push to={'/coin/' + this.state.id}/>;
-    // }
-
-    const {Id, Year, IsCommemorative, Country, Diffusion, Url, Name} = this.props.datas;
-      return (
-          <div className="coins-item" key={Id} /*onClick={ (e) => this.handleOnClick(Id)}*/>
-            <div className="picture-coin-item" style={{ backgroundImage: 'url("' + Url + '")' }}></div>
-              {Year} - {Country.Name} <br/>
-              <b className="name">{Name}</b>
-              <Commemorative IsCommemorative={IsCommemorative}/>
-                
-          </div>
-      )
-  }
-}
-
+import fetchCountriesAction from '../actions/countriesActions';
+import {getCoins} from '../reducers/coinsReducer';
+import {getCountries} from '../reducers/countriesReducer';
+import CountriesFilter from './CoinsFilters/CountriesFilter';
 
 class Coins extends Component {
 
   constructor(props) {
       super(props);
-
       this.shouldComponentRender = this.shouldComponentRender.bind(this);
   }
 
   componentWillMount() {
-      const {fetchCoins} = this.props;
-      fetchCoins();
+    const {fetchCoins, fetchCountries} = this.props;
+    fetchCoins();
+    fetchCountries();
   }
 
   shouldComponentRender() {
-      if(this.props.coins.pending === true) return false;
+      if(this.props.coinsStore.pending === true) return false;
       // more tests
       return true;
   }
 
   render() {
-      const {coins, pending} = this.props.coins;
       // Pour tester le loader
       // if(true) return <Loader/>
-      if(pending || coins == null) return <Loader/>
+      if(this.props.coins.pending || this.props.coins.coins == null) return <Loader/>
+      //if(pending || countries == null) return <Loader/>
       return (          
-        <div>
-          <h4>Nombre : {coins.length}</h4>
+        <div>  
+          <div>Filtres
+            <CountriesFilter datas={this.props.countries}/>
+          </div>
+          <h4>Nombre : {this.props.coins.coins.length}</h4>        
           <div className='product-list-wrapper'>              
-              {coins.map(function(item, key){
+              {this.props.coins.coins.map(function(item, key){
                 return <CoinItem datas={item} key={key}/>
               })} 
           </div>
@@ -91,13 +52,13 @@ class Coins extends Component {
 }
 
 const mapStateToProps = state => ({
-  error: getCoinsError(state),
   coins: getCoins(state),
-  pending: getCoinsPending(state)
+  countries: getCountries(state),
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchCoins: fetchCoinsAction
+  fetchCoins: fetchCoinsAction,
+  fetchCountries: fetchCountriesAction
 }, dispatch)
 
 
