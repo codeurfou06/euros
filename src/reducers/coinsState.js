@@ -1,5 +1,7 @@
 export default {
-    coins: null,
+    allCoins : null,
     pending : null,
-    error : null
+    error : null,
+    filteredCoins: null,
+    selectedCountryId : null
   };

@@ -4,7 +4,7 @@ import countries from './countriesReducer';
 
 const rootReducer = combineReducers({
   coins,
-  countries
+  countries,
 });
 
 export default rootReducer;

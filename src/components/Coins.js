@@ -10,7 +10,7 @@ import fetchCoinsAction from '../actions/coinsActions';
 import fetchCountriesAction from '../actions/countriesActions';
 import {getCoins} from '../reducers/coinsReducer';
 import {getCountries} from '../reducers/countriesReducer';
-import CountriesFilter from './CoinsFilters/CountriesFilter';
+import CoinsFilters from './CoinsFilters/CoinsFilters';
 
 class Coins extends Component {
 
@@ -26,24 +26,27 @@ class Coins extends Component {
   }
 
   shouldComponentRender() {
-      if(this.props.coinsStore.pending === true) return false;
+      if(this.props.coins.pending === true) return false;
       // more tests
       return true;
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if(this.props.coins.selectedCountryId === null) return true;
+    return nextProps.coins.selectedCountryId != this.props.coins.selectedCountryId;
   }
 
   render() {
       // Pour tester le loader
       // if(true) return <Loader/>
-      if(this.props.coins.pending || this.props.coins.coins == null) return <Loader/>
+      if(this.props.coins.pending || this.props.coins.filteredCoins == null) return <Loader/>
       //if(pending || countries == null) return <Loader/>
       return (          
-        <div>  
-          <div>Filtres
-            <CountriesFilter datas={this.props.countries}/>
-          </div>
-          <h4>Nombre : {this.props.coins.coins.length}</h4>        
+        <div>
+          <CoinsFilters/>
+          <h4>Nombre : {this.props.coins.filteredCoins.length}</h4>        
           <div className='product-list-wrapper'>              
-              {this.props.coins.coins.map(function(item, key){
+              {this.props.coins.filteredCoins.map(function(item, key){
                 return <CoinItem datas={item} key={key}/>
               })} 
           </div>

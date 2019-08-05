@@ -1,10 +1,14 @@
 import {fetchCoinsPending, fetchCoinsSuccess, fetchCoinsError} from './actionTypes';
 import API_URL from './../Const';
 
-function fetchCoins() {
+function fetchCoins(countryId) {
+    var url =API_URL() + "coin";
+    if(countryId != null){
+       url = url + "?CountryId=" + countryId;
+    }
     return dispatch => {
         dispatch(fetchCoinsPending());
-        fetch(API_URL() + "coin")
+        fetch(url)        
         .then(res => res.json())
         .then(res => {
             if(res.error) {
@@ -19,4 +23,5 @@ function fetchCoins() {
     }
 }
 
-export default fetchCoins;
+ export default fetchCoins;
+
