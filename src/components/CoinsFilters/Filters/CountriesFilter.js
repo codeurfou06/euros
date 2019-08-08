@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Loader from '../../Loader';
-import {getCountries} from '../../../reducers/countriesReducer';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import fetchCoinsAction from '../../../actions/coinsActions';
@@ -16,19 +15,17 @@ class CountriesFilter extends Component {
 
 
   handleChange(e) {
-    console.log(this.props)
-    this.props.setFilter(e.target.value, this.props.isCommemorative); 
+    this.props.setFilter(parseInt(e.target.value,10), this.props.isCommemorative); 
   }
 
   render() {  
-    const datas = this.props;
-     if(datas.countries.pending || datas.countries.countries == null) return <Loader/>
+     if(this.props.pending || this.props.countries == null) return <Loader/>
      return (   
        <div>
         <label>Pays</label>   
-        <select className="select" onChange={this.handleChange} value={this.props.selectedCountryId}>
+        <select className="select" onChange={this.handleChange} value={this.state.selectedCountryId}>
           <option key='0' value='0'>Tous</option>
-            {datas.countries.countries.map(function(item){
+            {this.props.countries.map(function(item){
                   return <option key={item.Id} value={item.Id}>{item.Name}</option>
             })}          
         </select>
@@ -43,13 +40,11 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 function mapStateToProps(state){
-  const { selectedCountryId, isCommemorative, coins } = state
-  console.log(state);
-  console.log(coins.selectedCountryId)
   return {
-    countries: getCountries(state),
-    isCommemorative : isCommemorative,
-    selectedCountryId : coins.selectedCountryId
+    pending : state.pending,
+    selectedCountryId : state.selectedCountryId,
+    isCommemorative : state.isCommemorative,
+    countries : state.countries
   }
 }
 

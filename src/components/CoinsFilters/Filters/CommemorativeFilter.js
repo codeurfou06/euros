@@ -9,21 +9,19 @@ class CommemorativeFilter extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    //this.state = {value : this.props.isCommemorative}
+    this.state = {value : this.props.isCommemorative}
   }
 
 
   handleChange(e) {
-      console.log(this.props)
-      console.log(this.state)
-    this.props.setFilter(this.props.selectedCountryId, e.target.value); 
+    this.props.setFilter(this.props.selectedCountryId, parseInt(e.target.value,10)); 
   }
 
   render() {  
      return (   
        <div>
         <label>Commémorative</label>   
-        <select className="select" onChange={this.handleChange} value={this.props.isCommemorative}>
+        <select className="select" onChange={this.handleChange} value={this.state.isCommemorative}>
           <option key='0' value='-1'>Tous</option>
           <option key='1' value='1'>Oui</option>
           <option key='2' value='0'>Non</option>       
@@ -39,15 +37,12 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 
-function mapStateToProps(state) {
-    const { selectedCountryId, isCommemorative } = state
-    console.log(state)
+function mapStateToProps(state){
     return {
-        isCommemorative : isCommemorative,
-        selectedCountryId : selectedCountryId
+        isCommemorative : state.isCommemorative,
+        selectedCountryId : state.selectedCountryId
     }
 }
-
 
 export default connect(
   mapStateToProps,

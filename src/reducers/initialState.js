@@ -4,5 +4,6 @@ export default {
     error : null,
     filteredCoins: null,
     selectedCountryId : null,
-    isCommemorative : null
+    isCommemorative : null,
+    countries: null
   };

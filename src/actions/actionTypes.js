@@ -53,8 +53,6 @@ export function fetchCountriesError(error) {
 
 //SELECTED_COUNTRY_ID
 export function setFilter(selectedCountryId, isCommemorative){
-    console.log(selectedCountryId);
-    console.log(isCommemorative);
     return {
         type : SET_FILTER,
         selectedCountryId : selectedCountryId,        

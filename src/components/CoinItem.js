@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import './CoinItem.css';
 
 class Commemorative extends Component{
-    //constructor(props){
-    //   super(props)
-    // }
-  
     render(){
       if(this.props.IsCommemorative){
         return <div>Commémorative</div>

@@ -1,10 +1,5 @@
-import {combineReducers} from 'redux';
-import coins from './coinsReducer';
-import countries from './countriesReducer';
+//import {combineReducers} from 'redux';
+import reducers from './coinsReducer';
 
-const rootReducer = combineReducers({
-  coins,
-  countries,
-});
-
+const rootReducer = reducers;
 export default rootReducer;
