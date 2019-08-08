@@ -1,13 +1,24 @@
 import coinsState from './coinsState';
-import {FETCH_COINS_PENDING, FETCH_COINS_SUCCESS, FETCH_COINS_ERROR, CHANGE_SELECTED_COUNTRYID} from '../actions/actionTypes';
+import {FETCH_COINS_PENDING, 
+        FETCH_COINS_SUCCESS, 
+        FETCH_COINS_ERROR,
+        SET_FILTER} 
+        from '../actions/actionTypes';
 
-function test(state, action){
-    if(action.selectedCountryId == '0'){
-        return state.allCoins;
+function filter(state, action){
+    console.log(state)
+    console.log(action)
+    var results = state.allCoins;
+    if(action.selectedCountryId !== '0'){
+        results = results.filter(item => item.CountryId == parseInt(action.selectedCountryId,10)).sort((a, b) => a.Year - b.Year);
     }
-    else{
-        return state.allCoins.filter(item => item.CountryId == parseInt(action.selectedCountryId)).sort((a, b) => a.Year - b.Year);
+    if(action.isCommemorative === '1'){
+        results = results.filter(item => item.IsCommemorative == true);
     }
+    else if(action.isCommemorative === '0'){
+        results = results.filter(item => item.IsCommemorative == false);
+    }
+    return results;
 }
 
 export default function coins(state = coinsState, action) {
@@ -33,12 +44,15 @@ export default function coins(state = coinsState, action) {
             pending: false,
             error: action.error
         }
-    case CHANGE_SELECTED_COUNTRYID:    
-        console.log("CHANGE_SELECTED_COUNTRYID")
+    case SET_FILTER:    
+        console.log("SET_FILTER")
+        console.log(state)
         return {
             ...state,
-            filteredCoins: test(state, action)
-        }    
+            filteredCoins: filter(state, action),
+            selectedCountryId : action.selectedCountryId,
+            isCommemorative : action.isCommemorative
+        }      
     default: 
         return state;
   }

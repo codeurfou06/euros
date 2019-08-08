@@ -33,7 +33,7 @@ class Coins extends Component {
 
   shouldComponentUpdate(nextProps) {
     if(this.props.coins.selectedCountryId === null) return true;
-    return nextProps.coins.selectedCountryId != this.props.coins.selectedCountryId;
+    return nextProps.coins.selectedCountryId !== this.props.coins.selectedCountryId;
   }
 
   render() {
@@ -44,7 +44,7 @@ class Coins extends Component {
       return (          
         <div>
           <CoinsFilters/>
-          <h4>Nombre : {this.props.coins.filteredCoins.length}</h4>        
+          <div className="count">Nombre : {this.props.coins.filteredCoins.length}</div>        
           <div className='product-list-wrapper'>              
               {this.props.coins.filteredCoins.map(function(item, key){
                 return <CoinItem datas={item} key={key}/>

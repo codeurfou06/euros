@@ -3,5 +3,6 @@ export default {
     pending : null,
     error : null,
     filteredCoins: null,
-    selectedCountryId : null
+    selectedCountryId : null,
+    isCommemorative : null
   };

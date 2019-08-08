@@ -4,7 +4,7 @@ import {getCountries} from '../../../reducers/countriesReducer';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import fetchCoinsAction from '../../../actions/coinsActions';
-import {setSelectedCountryId} from '../../../actions/actionTypes';
+import {setFilter} from '../../../actions/actionTypes';
 import './CountriesFilter.css'; 
 
 class CountriesFilter extends Component {
@@ -16,7 +16,8 @@ class CountriesFilter extends Component {
 
 
   handleChange(e) {
-    this.props.setSelectedCountryId(e.target.value); 
+    console.log(this.props)
+    this.props.setFilter(e.target.value, this.props.isCommemorative); 
   }
 
   render() {  
@@ -38,15 +39,19 @@ class CountriesFilter extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchCoins: fetchCoinsAction,
-  setSelectedCountryId : setSelectedCountryId
+  setFilter : setFilter
 }, dispatch)
 
-
-const mapStateToProps = state => ({
-  countries: getCountries(state),
-  selectedCountryId : state.selectedCountryId
-})
-
+function mapStateToProps(state){
+  const { selectedCountryId, isCommemorative, coins } = state
+  console.log(state);
+  console.log(coins.selectedCountryId)
+  return {
+    countries: getCountries(state),
+    isCommemorative : isCommemorative,
+    selectedCountryId : coins.selectedCountryId
+  }
+}
 
 export default connect(
   mapStateToProps,

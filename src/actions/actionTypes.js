@@ -6,8 +6,7 @@ export const FETCH_COUNTRIES_PENDING = 'FETCH_COUNTRIES_PENDING';
 export const FETCH_COUNTRIES_SUCCESS = 'FETCH_COUNTRIES_SUCCESS';
 export const FETCH_COUNTRIES_ERROR = 'FETCH_COUNTRIES_ERROR';
 
-export const CHANGE_SELECTED_COUNTRYID = 'CHANGE_SELECTED_COUNTRYID';
-
+export const SET_FILTER = 'SET_FILTER';
 
 // COINS
 export function fetchCoinsPending() {
@@ -53,9 +52,12 @@ export function fetchCountriesError(error) {
 
 
 //SELECTED_COUNTRY_ID
-export function setSelectedCountryId(id){
+export function setFilter(selectedCountryId, isCommemorative){
+    console.log(selectedCountryId);
+    console.log(isCommemorative);
     return {
-        type : CHANGE_SELECTED_COUNTRYID,
-        selectedCountryId : id
+        type : SET_FILTER,
+        selectedCountryId : selectedCountryId,        
+        isCommemorative : isCommemorative
     }
 }
