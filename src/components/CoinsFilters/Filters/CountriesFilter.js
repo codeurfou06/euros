@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import Loader from '../../Loader';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import fetchCoinsAction from '../../../actions/coinsActions';
 import {setFilter} from '../../../actions/actionTypes';
-import './CountriesFilter.css'; 
 
 class CountriesFilter extends Component {
   constructor(props) {
@@ -15,17 +13,16 @@ class CountriesFilter extends Component {
 
 
   handleChange(e) {
-    this.props.setFilter(parseInt(e.target.value,10), this.props.isCommemorative); 
+    this.props.setFilter(parseInt(e.target.value,10), this.props.isCommemorative, this.props.selectYear); 
   }
 
   render() {  
-     if(this.props.pending || this.props.countries == null) return <Loader/>
      return (   
-       <div>
+      <div className="form-group col-md-4 col-sm-6">
         <label>Pays</label>   
-        <select className="select" onChange={this.handleChange} value={this.state.selectedCountryId}>
+        <select className="form-control" onChange={this.handleChange} value={this.state.selectedCountryId}>
           <option key='0' value='0'>Tous</option>
-            {this.props.countries.map(function(item){
+            {this.props.countries.sort((a, b) => (a.Name > b.Name) ? 1 : -1).map(function(item){
                   return <option key={item.Id} value={item.Id}>{item.Name}</option>
             })}          
         </select>
@@ -35,16 +32,15 @@ class CountriesFilter extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchCoins: fetchCoinsAction,
   setFilter : setFilter
 }, dispatch)
 
 function mapStateToProps(state){
   return {
-    pending : state.pending,
     selectedCountryId : state.selectedCountryId,
     isCommemorative : state.isCommemorative,
-    countries : state.countries
+    countries : state.countries,
+    selectedYear : state.selectedYear
   }
 }
 

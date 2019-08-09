@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import CountriesFilter from './Filters/CountriesFilter'
 import CommemorativeFilter from './Filters/CommemorativeFilter'
+import YearFilter from './Filters/YearFilter';
 
 class CoinsFilters extends Component {
   render() {  
      return (  
-         <div>
-            <CountriesFilter/>
-            <CommemorativeFilter/>
-         </div>
+         <form>
+           <div className="form-row">
+              <CountriesFilter/>
+              <CommemorativeFilter/>
+              <YearFilter/>
+            </div>
+         </form>
     );
   }
 }

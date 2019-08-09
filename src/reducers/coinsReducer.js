@@ -10,16 +10,22 @@ import {FETCH_COINS_PENDING,
 
 function filter(state, action){
     var results = state.allCoins;
+    // Filtre pays
     if(action.selectedCountryId > 0){
-        results = results.filter(item => item.CountryId === action.selectedCountryId).sort((a, b) => a.Year - b.Year);
+        results = results.filter(item => item.CountryId === action.selectedCountryId);
     }
+    // Filtre commemorative
     if(action.isCommemorative === 1){
         results = results.filter(item => item.IsCommemorative === true);
     }
     else if(action.isCommemorative === 0){
         results = results.filter(item => item.IsCommemorative === false);
     }
-    return results;
+    //Filtre année
+    if(action.selectedYear > 0){
+        results = results.filter(item => item.Year === action.selectedYear);
+    }
+    return results.sort((a, b) => a.Year - b.Year);
 }
 
 export default function coins(state = initialState, action) {

@@ -7,22 +7,28 @@ class CommemorativeFilter extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = {value : this.props.isCommemorative}
+    this.state = {value : this.props.selectedYear}
   }
 
 
   handleChange(e) {
-    this.props.setFilter(this.props.selectedCountryId, parseInt(e.target.value,10), this.props.selectedYear); 
+    this.props.setFilter(this.props.selectedCountryId, this.props.isCommemorative, parseInt(e.target.value,10)); 
   }
 
   render() {  
+    const years = [];
+    for(let i = 1999; i <= new Date().getFullYear(); i++){
+        years.push(i);
+    }
      return (   
       <div className="form-group col-md-2 col-sm-4">
-        <label>Commémorative</label>   
-        <select className="form-control" onChange={this.handleChange} value={this.state.isCommemorative}>
-          <option key='0' value='-1'>Tous</option>
-          <option key='1' value='1'>Oui</option>
-          <option key='2' value='0'>Non</option>       
+        <label>Année</label>   
+        <select className="form-control" onChange={this.handleChange} value={this.state.selectedYear}>
+          <option key='0' value='-1'>Toutes</option>
+          {years.map(function(item, key){
+               return <option key={key} value={item}>{item}</option>   
+          })}
+          
         </select>
       </div>
     );
