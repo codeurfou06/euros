@@ -13,7 +13,7 @@ class CountriesFilter extends Component {
 
 
   handleChange(e) {
-    this.props.setFilter(parseInt(e.target.value,10), this.props.isCommemorative, this.props.selectedYear); 
+    this.props.setFilter(parseInt(e.target.value,10), this.props.isCommemorative, this.props.selectedYear, this.props.selectedValeur); 
   }
 
   render() {  
@@ -41,7 +41,8 @@ function mapStateToProps(state){
     selectedCountryId : state.selectedCountryId,
     isCommemorative : state.isCommemorative,
     countries : state.countries,
-    selectedYear : state.selectedYear
+    selectedYear : state.selectedYear,
+    selectedValeur : state.selectedValeur
   }
 }
 

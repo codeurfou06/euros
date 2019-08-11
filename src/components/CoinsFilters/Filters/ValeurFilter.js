@@ -3,30 +3,44 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {setFilter} from '../../../actions/actionTypes';
 
+
+
+class GetLabel extends Component{
+    render(){
+        const valeur =  this.props.valeur;
+      if(valeur < 100){
+        return valeur + " cents";
+      }
+      else{
+          if(valeur/100 === 1){
+            return 1 + " euro"; 
+          }
+          else return "2 euros";
+      }
+    }
+  }
+
 class CommemorativeFilter extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = {value : this.props.selectedYear}
+    this.state = {value : this.props.selectedValeur}
   }
 
 
   handleChange(e) {
-    this.props.setFilter(this.props.selectedCountryId, this.props.isCommemorative, parseInt(e.target.value,10), this.props.selectedValeur); 
+    this.props.setFilter(this.props.selectedCountryId, this.props.isCommemorative, this.props.selectedYear, parseInt(e.target.value,10)); 
   }
 
   render() {  
-    const years = [];
-    for(let i = 1999; i <= new Date().getFullYear(); i++){
-        years.push(i);
-    }
+    const valeurs = [200];
      return (   
       <div className="form-group col-md-2 col-sm-4">
-        <label>Année</label>   
-        <select className="form-control" onChange={this.handleChange} value={this.state.selectedYear}>
+        <label>Valeur</label>   
+        <select className="form-control" onChange={this.handleChange} value={this.state.selectedValeur}>
           <option key='0' value='-1'>Toutes</option>
-          {years.map(function(item, key){
-               return <option key={key} value={item}>{item}</option>   
+          {valeurs.map(function(item, key){
+               return <option key={key} value={item}>{<GetLabel valeur={item}/>}</option>   
           })}
           
         </select>
@@ -45,7 +59,7 @@ function mapStateToProps(state){
         isCommemorative : state.isCommemorative,
         selectedCountryId : state.selectedCountryId,
         selectedYear : state.selectedYear,
-        selectedValeur : state.selectedValeur
+        selectedValeur :state.selectedValeur
     }
 }
 
