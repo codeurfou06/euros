@@ -6,5 +6,6 @@ export default {
     selectedCountryId : null,
     isCommemorative : null,
     selectedYear : null,
+    selectedValeur : null,
     countries: null
   };

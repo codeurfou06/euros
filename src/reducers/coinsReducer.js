@@ -26,6 +26,10 @@ function filter(state, action){
     if(action.selectedYear > 0){
         results = results.filter(item => item.Year === action.selectedYear);
     }
+    //Filtre Valeur
+    if(action.selectedValeur > 0){
+        results = results.filter(item => item.Valeur === action.selectedValeur);
+    }
     return results.sort((a, b) => a.Year - b.Year);
 }
 
@@ -59,7 +63,8 @@ export default function coins(state = initialState, action) {
             filteredCoins: filter(state, action),
             selectedCountryId : action.selectedCountryId,
             isCommemorative : action.isCommemorative,
-            selectedYear : action.selectedYear
+            selectedYear : action.selectedYear,
+            selectedValeur : action.selectedValeur
         }      
 
 

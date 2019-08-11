@@ -12,7 +12,7 @@ class CommemorativeFilter extends Component {
 
 
   handleChange(e) {
-    this.props.setFilter(this.props.selectedCountryId, parseInt(e.target.value,10), this.props.selectedYear); 
+    this.props.setFilter(this.props.selectedCountryId, parseInt(e.target.value,10), this.props.selectedYear, this.props.selectedValeur); 
   }
 
   render() {  
@@ -38,7 +38,8 @@ function mapStateToProps(state){
     return {
         isCommemorative : state.isCommemorative,
         selectedCountryId : state.selectedCountryId,
-        selectedYear : state.selectedYear
+        selectedYear : state.selectedYear,
+        selectedValeur : state.selectedValeur
     }
 }
 

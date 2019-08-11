@@ -52,11 +52,12 @@ export function fetchCountriesError(error) {
 
 
 //SELECTED_COUNTRY_ID
-export function setFilter(selectedCountryId, isCommemorative, selectedYear){
+export function setFilter(selectedCountryId, isCommemorative, selectedYear, selectedValeur){
     return {
         type : SET_FILTER,
         selectedCountryId : selectedCountryId,        
         isCommemorative : isCommemorative,
-        selectedYear : selectedYear
+        selectedYear : selectedYear,
+        selectedValeur : selectedValeur
     }
 }
