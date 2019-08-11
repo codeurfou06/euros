@@ -9,6 +9,7 @@ import {FETCH_COINS_PENDING,
         from '../actions/actionTypes';
 
 function filter(state, action){
+    console.log(action)
     var results = state.allCoins;
     // Filtre pays
     if(action.selectedCountryId > 0){
@@ -57,7 +58,8 @@ export default function coins(state = initialState, action) {
             ...state,
             filteredCoins: filter(state, action),
             selectedCountryId : action.selectedCountryId,
-            isCommemorative : action.isCommemorative
+            isCommemorative : action.isCommemorative,
+            selectedYear : action.selectedYear
         }      
 
 

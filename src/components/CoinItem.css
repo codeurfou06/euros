@@ -1,4 +1,4 @@
-.coins-item{
+/* .coins-item{
     color: black;
     width : 14em;
     height : 18em;
@@ -7,7 +7,7 @@
     float:left;
     padding : 10px;
     margin : 5px;    
-}
+}*/
 
 .picture-coin-item{
     height : 11em;
@@ -24,6 +24,20 @@
 .name{
     line-height: 1.1em;
     display: inline-block;
-    max-height: 3em;
+    height: 2.2em;
     overflow-y: hidden;
+} 
+
+.card{
+    margin-bottom: 1.4em !important;
+    min-width: 18em;
+}
+
+.card-text{
+    padding : 0 0.8em;
+    margin-bottom:  0.2em;
+}
+
+.no-commemo {
+    height: 19px;
 }

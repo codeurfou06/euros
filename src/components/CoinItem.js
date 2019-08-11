@@ -6,36 +6,27 @@ class Commemorative extends Component{
       if(this.props.IsCommemorative){
         return <div>Commémorative</div>
       }
-        return null;
+        return <div className="no-commemo"> </div>;
     }
   }
 
-class CoinItem extends Component {
-
-    constructor(props){
-      super(props)
-      this.state = {redirect : false,
-                    id : null};
-    }
-  
-    handleOnClick = (id) => {
-      this.setState({redirect: true,
-                     id : id});
-    }
-  
-    render() {
-      // if (this.state.redirect) {
-      //    return <Redirect push to={'/coin/' + this.state.id}/>;
-      // }
-  
+class CoinItem extends Component {  
+    render() { 
       const {Id, Year, IsCommemorative, Country, Url, Name} = this.props.datas;
         return (
-            <div className="coins-item" key={Id} /*onClick={ (e) => this.handleOnClick(Id)}*/>
+            <div className="card" key={Id}>
               <div className="picture-coin-item" style={{ backgroundImage: 'url("' + Url + '")' }}></div>
-                {Year} - {Country.Name} <br/>
-                <b className="name">{Name}</b>
-                <Commemorative IsCommemorative={IsCommemorative}/>
-                  
+              <h5 className="card-title"></h5>
+              <p className="card-text">
+                <b>{Year} - {Country.Name}</b>
+                <br/>
+                <div className="name">{Name ? Name: " "}</div>
+              </p>
+              <div className="card-footer">
+                <small className="text-muted"> 
+                  <Commemorative IsCommemorative={IsCommemorative}/>  
+                </small>
+              </div>              
             </div>
         )
     }

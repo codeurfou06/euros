@@ -5,5 +5,6 @@ export default {
     filteredCoins: null,
     selectedCountryId : null,
     isCommemorative : null,
+    selectedYear : null,
     countries: null
   };

@@ -4,12 +4,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Loader from './Loader';
 import CoinItem from './CoinItem';
-
-
 import fetchCoinsAction from '../actions/coinsActions';
 import fetchCountriesAction from '../actions/countriesActions';
-// import {getCoins} from '../reducers/coinsReducer';
-// import {getCountries} from '../reducers/countriesReducer';
 import CoinsFilters from './CoinsFilters/CoinsFilters';
 
 class Coins extends Component {
@@ -21,7 +17,7 @@ class Coins extends Component {
   }
 
   shouldComponentRender() {
-      if(this.props.pending === true) return false;
+      if(this.props.pending === true || this.props.allCoins === null) return false;
       // more tests
       return true;
   }
@@ -34,10 +30,14 @@ class Coins extends Component {
         <div>
           <CoinsFilters/>
           <div className="count">Nombre : {this.props.filteredCoins.length}</div>        
-          <div className='product-list-wrapper'>              
+          <div className='card-deck'>              
               {this.props.filteredCoins.map(function(item, key){
                 return <CoinItem datas={item} key={key}/>
               })} 
+              <div className="card card-invisible"></div>
+              <div className="card card-invisible"></div>
+              <div className="card card-invisible"></div>
+              <div className="card card-invisible"></div>
           </div>
         </div>)
   }

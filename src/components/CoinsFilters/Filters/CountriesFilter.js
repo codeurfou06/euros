@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Loader from '../../Loader';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {setFilter} from '../../../actions/actionTypes';
+import Loader from '../../Loader';
 
 class CountriesFilter extends Component {
   constructor(props) {
@@ -13,10 +13,11 @@ class CountriesFilter extends Component {
 
 
   handleChange(e) {
-    this.props.setFilter(parseInt(e.target.value,10), this.props.isCommemorative, this.props.selectYear); 
+    this.props.setFilter(parseInt(e.target.value,10), this.props.isCommemorative, this.props.selectedYear); 
   }
 
   render() {  
+    if(this.props.pending === true || this.props.countries === null) return <Loader/>
      return (   
       <div className="form-group col-md-4 col-sm-6">
         <label>Pays</label>   
