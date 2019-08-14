@@ -8,15 +8,20 @@ import {setFilter} from '../../../actions/actionTypes';
 class GetLabel extends Component{
     render(){
         const valeur =  this.props.valeur;
-      if(valeur < 100){
-        return valeur + " cents";
-      }
-      else{
-          if(valeur/100 === 1){
-            return 1 + " euro"; 
-          }
-          else return "2 euros";
-      }
+        var plurialize = true;
+        var text = "";
+        if (valeur === 100 || valeur === 1){
+            plurialize = false;
+        }
+        
+        if(valeur < 100){
+            text = valeur + " cent";
+        }
+        else{
+            text = valeur/100 + " euro";
+        }
+
+        return text + (plurialize ? "s" : "");
     }
   }
 
@@ -33,7 +38,7 @@ class CommemorativeFilter extends Component {
   }
 
   render() {  
-    const valeurs = [200];
+    const valeurs = [200,100,50,20,10,5,2,1];
      return (   
       <div className="form-group col-md-2 col-sm-4">
         <label>Valeur</label>   

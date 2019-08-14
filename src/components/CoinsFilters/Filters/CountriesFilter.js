@@ -19,7 +19,7 @@ class CountriesFilter extends Component {
   render() {  
     if(this.props.pending === true || this.props.countries === null) return <Loader/>
      return (   
-      <div className="form-group col-md-4 col-sm-6">
+      <div className="form-group col-md-3 col-sm-6">
         <label>Pays</label>   
         <select className="form-control" onChange={this.handleChange} value={this.state.selectedCountryId}>
           <option key='0' value='0'>Tous</option>

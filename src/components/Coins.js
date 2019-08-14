@@ -4,16 +4,15 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Loader from './Loader';
 import CoinItem from './CoinItem';
-import fetchCoinsAction from '../actions/coinsActions';
+import fetchUserCoinsByLogin from '../actions/fetchUserCoinsByLogin';
 import fetchCountriesAction from '../actions/countriesActions';
 import CoinsFilters from './CoinsFilters/CoinsFilters';
 
 class Coins extends Component {
 
   componentWillMount() {
-    const {fetchCoins, fetchCountries} = this.props;
-    fetchCoins();
-    fetchCountries();
+    this.props.fetchUserCoinsByLogin('bnk-57');
+    this.props.fetchCountries();
   }
 
   shouldComponentRender() {
@@ -51,7 +50,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchCoins: fetchCoinsAction,
+  fetchUserCoinsByLogin: fetchUserCoinsByLogin,
   fetchCountries: fetchCountriesAction
 }, dispatch)
 
