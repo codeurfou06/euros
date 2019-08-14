@@ -20,7 +20,7 @@ class CoinItem extends Component {
               <p className="card-text">
                 <b>{Year} - {Country.Name}</b>
                 <br/>
-                <div className="name">{Name ? Name: " "}</div>
+                {/* <div className="name">{Name ? Name: " "}</div> */}
               </p>
               <div className="card-footer">
                 <small className="text-muted"> 
